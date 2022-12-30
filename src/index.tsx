@@ -1,11 +1,13 @@
 import ReactDOM from 'react-dom';
-import Parent from './props/Parent';
+// import Parent from './props/Parent';
+import GuestList from './state/GuestList';
 
 const App = () => {
   return (
     <div>
-      <h1>Hi</h1>
-      <Parent />
+      <h1>Partytime</h1>
+      {/* <Parent /> */}
+      <GuestList />
     </div>
   )
 }
