@@ -2,7 +2,21 @@
 import { useState } from 'react';
 
 const GuestList: React.FC = () => {
+  // type inference is string
   const [name, setName] = useState('');
+
+  // type inferences is never ([])
+  // TS makes it forever-empty
+  // <> adds a way to tell TS type
+  const [guests, setGuests] = useState<string[]>([]);
+
+  const onClick = () => {
+    setName('');
+    // take current value of name and add to guests
+    setGuests([...guests, name]);
+    // take all strings out of guests array and add it to a new array
+    // empty after clicking add
+  };
 
   return (
     <div>
@@ -15,7 +29,7 @@ const GuestList: React.FC = () => {
           value={name}  
           onChange={(e) => setName(e.target.value)}
           />
-        <button>Add Guest</button>
+        <button onClick={onClick}>Add Guest</button>
       </form>
     </div>
   )
