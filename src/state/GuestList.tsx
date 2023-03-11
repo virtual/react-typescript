@@ -22,7 +22,10 @@ const GuestList: React.FC = () => {
     <div>
       <h2>Guest list</h2>
 
-      <form>
+      <ul>
+        {guests.map(guest => <li key={guest}>{guest}</li>)}
+      </ul>
+      <form onSubmit={e => e.preventDefault()}>
         {/* Track what user enters via state */}
         <input 
           placeholder="Guest name" 
