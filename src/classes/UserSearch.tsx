@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 
+// simplify user type definitions by creating referencable interface
+interface User {
+    _id: string;
+    name: string;
+    age: number;
+}
+
 // receives an array of user objects
 interface UserSearchProps {
-    users: {
-        _id: string;
-        name: string;
-        age: number;
-    }[]
+    users: User[]
 }
 
 // 2. state can be set up as an interface
 interface UserSearchState {
     name: string; // search string
-    user: { name: string; age: number } | undefined;
+    user: User | undefined;
 }
 
 
