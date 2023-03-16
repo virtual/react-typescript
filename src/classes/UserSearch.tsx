@@ -32,13 +32,50 @@ class UserSearch extends Component<UserSearchProps> {
         user: undefined
     }
 
-  render() {
-    return (
-      <div>
-        UserSearch
-      </div>
-    )
-  }
+    // Since this is a class component, we have to worry about the 
+    // context of cb functions (what is this?)
+    // onClick() {
+
+    // To solve this context, we use an arrow function instead
+    onClick = () => {
+        // iterate over list of users and show found user
+        const foundUser = this.props.users.find((user) => {
+            // return user if true
+            return user.name === this.state.name;
+        });
+
+        this.setState({ user: foundUser })
+    }
+
+    render() {
+        // instead of typing out this.state.name & this.state.user, 
+        // we can destructure off of state
+        const { name, user } = this.state;
+
+        return (
+            <div>
+                <h2>User Search</h2>
+                <form onSubmit={e => e.preventDefault()}>
+                    <input 
+                    placeholder="Search name" 
+                    value={name}  
+                    onChange={(e) => this.setState({ name: e.target.value })}
+                    />
+                    <button onClick={this.onClick}>Search</button>
+                </form>
+
+                <hr/>
+                {/* Need to check if user is defined */}
+                <div>
+                    <dl>
+                        <dt>Name</dt><dd>{user && user.name}</dd>
+                        <dt>Age</dt><dd>{user && user.age}</dd>
+                    </dl>
+                    
+                </div>
+            </div>
+        )
+    }
 }
 
 export default UserSearch;
